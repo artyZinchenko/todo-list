@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import TodoList from './components/TodoList';
+import React, { useState } from 'react';
+import TodosContext from './context/TodosContext';
+import './styles/styles.css';
+import Header from './components/Header';
+import CreateTodoBox from './components/CreateTodoBox';
 
-function App() {
+const App = () => {
+  const [todos, setTodos] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const value = { todos, setTodos };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TodosContext.Provider value={value}>
+      <div>
+        <Header showForm={showForm} setShowForm={setShowForm} />
+        <div className='container'>
+          {showForm && <CreateTodoBox setShowForm={setShowForm} />}
+          <TodoList />
+        </div>
+      </div>
+    </TodosContext.Provider>
   );
-}
+};
 
 export default App;

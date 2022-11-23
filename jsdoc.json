@@ -1,0 +1,16 @@
+{
+  "source": {
+    "include": ["README.md", "src"],
+    "includePattern": ".js$"
+  },
+  "opts": {
+    "destination": "./docs/",
+    "recurse": true
+  },
+  "plugins": ["plugins/markdown"],
+  "babel": {
+    "extensions": ["js", "es6", "jsx"],
+    "presets": ["es2015", "react"],
+    "plugins": ["transform-flow-strip-types"]
+  }
+}
